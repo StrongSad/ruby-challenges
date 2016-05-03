@@ -26,33 +26,39 @@
 # ```
 
 class Guess_that_number 
-  attr_accessor :random_number
+
+
+  def initialize
+    @random_number = 1 + rand(100)
+    @count = 0
+  end
 
   def your_guess
     puts "guess a number between 1 and 100!"
     guess = gets.chomp.to_i
-    check()
+    check(guess, @random_number)
   end
 
-  def generate_number
-    @random_number = rand(1..100)
-  end
+    
 
-  def check(num)
-    puts @random_number
-    count = 0
-    if num.to_i > @random_number
+  def check(num, random_number)
+    puts random_number
+    
+    if num.to_i > random_number
       puts "Your guess is too high, guess again"
-      count = count + 1
-    elsif num.to_i < @random_number 
+      @count = @count + 1
+      your_guess
+    elsif num.to_i < random_number 
       puts "your guess was too low, guess again"
-      count = count + 1
-    elsif num.to_i == @random_number
+      @count = @count + 1
+      your_guess
+    elsif num.to_i == random_number
       puts "What the What!!!!! Spot on brotha"
-      puts count
+      puts @count
     else
       puts "somethings not right.... guess again, your guess count is going up though"
-      count = count + 1
+      @count = @count + 1
+      your_guess
     end
   end
 end
