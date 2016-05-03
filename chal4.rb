@@ -25,38 +25,41 @@
 # You got it in 7 tries
 # ```
 
-def generate_number
-  random_number = rand(100)
-end
+class Guess_that_number 
+  attr_accessor :random_number
 
-def your_guess
-puts "guess a number between 1 and 100!"
-guess = gets.to_i
-check(guess)
-end
+  def your_guess
+    puts "guess a number between 1 and 100!"
+    guess = gets.chomp.to_i
+    check()
+  end
 
-def check(guess)
+  def generate_number
+    @random_number = rand(1..100)
+  end
 
-  count = 0
-  if guess > random_number
-    puts "Your guess is too high, guess again"
-    count = count + 1
-  elsif guess < random_number 
-    puts "your guess was too low, guess again"
-    count = count + 1
-  elsif guess == random_number
-    puts "What the What!!!!! Spot on brotha"
-    puts count
-  else
-    puts "somethings not right.... guess again, your guess count is going up though"
-    count = count + 1
+  def check(num)
+    puts @random_number
+    count = 0
+    if num.to_i > @random_number
+      puts "Your guess is too high, guess again"
+      count = count + 1
+    elsif num.to_i < @random_number 
+      puts "your guess was too low, guess again"
+      count = count + 1
+    elsif num.to_i == @random_number
+      puts "What the What!!!!! Spot on brotha"
+      puts count
+    else
+      puts "somethings not right.... guess again, your guess count is going up though"
+      count = count + 1
+    end
   end
 end
 
-
 my_guess = Guess_that_number.new
 
-my_guess.your_guess()
+my_guess.your_guess
 
 
 
